@@ -1,4 +1,4 @@
-import { Cart } from "../Model/Cart/cart.js";
+import { Cart } from "../Model/Cart/Cart.js";
 import { User } from "../Model/User/User.js";
 export const addItem = async (req, res) => {
     const userID = req.user;
