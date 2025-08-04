@@ -1,0 +1,10 @@
+import express from 'express';
+import { addItem, clearCart, deleteItem, dereaseQty, showCart } from '../Controller/Cart.js';
+import {isAutheticate} from '../Middleware/Auth.js';
+const router = express.Router();
+router.post('/add',isAutheticate,addItem);
+router.delete('/delete/:id',isAutheticate,deleteItem);
+router.delete('/clear',isAutheticate,clearCart);
+router.get('/decreaseQty/:id',isAutheticate,dereaseQty);
+router.get('/show',isAutheticate,showCart);
+export default router;

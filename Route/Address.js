@@ -1,0 +1,10 @@
+import express from 'express';
+import { addAddress, allAddress, deleteAddresss, specificAddress, update } from '../Controller/Address.js';
+import { isAutheticate } from '../Middleware/Auth.js';
+const router = express.Router();
+router.post('/add', isAutheticate, addAddress);
+router.put('/update/:id', isAutheticate, update);
+router.delete('/delete/:id', isAutheticate, deleteAddresss);
+router.get('/allAddress', isAutheticate, allAddress);
+router.get('/specificAddress/:id', isAutheticate, specificAddress);
+export default router;
