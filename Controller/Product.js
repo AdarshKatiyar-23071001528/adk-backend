@@ -2,8 +2,8 @@ import { Product } from "../Model/Product/Product.js"
 
 export const addProduct = async (req, res) => {
     try {
-        const { productTitle, productDesc, productPrice, productCategory, productQty, productImg } = req.body;
-        const product = await Product.create({ productTitle, productDesc, productPrice, productCategory, productQty, productImg });
+        const { productTitle, productDesc, productPrice,productMainCategory, productCategory, productQty, productImg } = req.body;
+        const product = await Product.create({ productTitle, productDesc, productPrice,productMainCategory, productCategory, productQty, productImg });
         res.json({ message: "Product Add Successful", product, success: true });
     }
     catch (error) {

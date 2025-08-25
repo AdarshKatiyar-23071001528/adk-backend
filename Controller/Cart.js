@@ -2,12 +2,14 @@ import { Cart } from "../Model/Cart/Cart.js";
 import { User } from "../Model/User/User.js";
 export const addItem = async (req, res) => {
     const userID = req.user;
-    const { productId, productQty, productPrice, productTitle, productImg } = req.body;
+    const { productId, productQty, productPrice, productTitle, productImg,  productCategory } = req.body;
+    // console.log(req.body);
     let cart = await Cart.findOne({ userID });
     if (!cart) {
         cart = new Cart({ userID, items: [] });
-        cart.items.push({ productId, productQty, productPrice, productTitle, productImg });
+        cart.items.push({ productId, productQty, productPrice, productTitle, productImg,  productCategory });
         res.json({ message: "Item add in Cart first time", cart, success: true });
+       
     }
     else {
         let isItem = cart?.items?.findIndex((item) => item?.productId?.toString() === productId);
@@ -18,8 +20,9 @@ export const addItem = async (req, res) => {
             res.json({ message: "Updated Item", cart, success: true });
         }
         else {
-            cart.items.push({ productId, productQty, productPrice, productTitle, productImg });
+            cart.items.push({ productId, productQty, productPrice, productTitle, productImg, productCategory });
             res.json({ message: "Item add in Cart", cart, success: true });
+           
         }
     }
     await cart.save();

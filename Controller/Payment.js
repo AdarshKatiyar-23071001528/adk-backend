@@ -48,11 +48,6 @@ export const allOrder = async (req, res) => {
     }
 }
 
-
-export const OrderConfirmation = async (req, res) => {
-
-}
-
 export const allPayments = async (req, res) => {
     try {
         const payment = await Payment.find();
@@ -60,5 +55,19 @@ export const allPayments = async (req, res) => {
     }
     catch (error) {
         return res.json({ message: "Failed", success: false });
+    }
+}
+export const OrderConfirmation = async(req,res) =>{
+
+}
+
+export const specificOrder = async(req,res) =>{
+    
+    try {
+        const {orderId} = req.params;
+        const order = await Payment.find({orderId});
+        res.json({message:"Fetch order", order, success: true})
+    } catch (error) {
+        return res.json({message:error.message ,success : false});
     }
 }

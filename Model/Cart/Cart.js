@@ -20,6 +20,9 @@ const cartItemSchema = new mongoose.Schema({
     productImg:{
         type:String,
         require: true
+    },productCategory:{
+        type: String,
+        require: true
     }
 
 })
